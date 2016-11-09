@@ -4,7 +4,9 @@
   "description": "practice with React by creating an app to store ideas, with full CRUD for ideas",
   "main": "index.js",
   "scripts": {
-    "test": "npm test"
+    "start": "webpack-dev-server --hot --inline",
+    "build": "webpack",
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -23,9 +25,15 @@
   },
   "homepage": "https://github.com/ErinGreenhalgh/idea-box-react#readme",
   "devDependencies": {
+    "babel-core": "^6.18.2",
+    "babel-loader": "^6.2.7",
     "chai": "^3.5.0",
+    "css-loader": "^0.25.0",
     "mocha": "^3.1.2",
     "mocha-loader": "^1.0.0",
+    "node-sass": "^3.11.2",
+    "sass-loader": "^4.0.2",
+    "style-loader": "^0.13.1",
     "webpack": "^1.13.3",
     "webpack-dev-server": "^1.16.2"
   }
