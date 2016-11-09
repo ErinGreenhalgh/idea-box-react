@@ -18,6 +18,5 @@ module.exports = {
   },
   resolve: {
     extensions: ['', '.js', '.json', '.scss', '.css']
-    //allows us to be generic when requiring files, not having to specify the file extension
   }
 }
