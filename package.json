@@ -1,7 +1,7 @@
 {
-  "name": "idea-box-react",
+  "name": "project-manager",
   "version": "1.0.0",
-  "description": "practice with React by creating an app to store ideas, with full CRUD for ideas",
+  "description": "practice with React by creating a project manager app",
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --hot --inline",
