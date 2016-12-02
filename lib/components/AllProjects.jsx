@@ -1,5 +1,6 @@
 const React = require('react');
 const ReactDOM = require('react-dom');
+const dataFetcher = require('../dataFetcher.js');
 const axios = require('axios');
 
 class AllProjects extends React.Component{
@@ -21,20 +22,27 @@ class AllProjects extends React.Component{
   }
 
   render() {
+    console.log("state:", this.state)
     let projects = this.state.projects.map((project) => {
       return (
-        <table>
-          <tr>
-            <td>{project.name}</td>
-            <td>{project.description}</td>
-          </tr>
-        </table>
+        <tr>
+          <td>{project.name}</td>
+          <td>{project.description}</td>
+        </tr>
       )
     })
 
     return (
       <div className="all-projects">
-        {projects}
+        <table>
+          <tbody>
+            <tr>
+              <th>Project Name</th>
+              <th>Description</th>
+            </tr>
+            {projects}
+          </tbody>
+        </table>
       </div>
     )
   }
