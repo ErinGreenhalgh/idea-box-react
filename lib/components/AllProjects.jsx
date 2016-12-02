@@ -22,7 +22,6 @@ class AllProjects extends React.Component{
   }
 
   render() {
-    console.log("state:", this.state)
     let projects = this.state.projects.map((project) => {
       return (
         <tr>
@@ -49,5 +48,3 @@ class AllProjects extends React.Component{
 };
 
 ReactDOM.render(<AllProjects />, document.getElementById('layout'))
-
-// export { AllProjects };
