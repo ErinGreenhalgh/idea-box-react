@@ -24,7 +24,7 @@ class AllProjects extends React.Component{
   render() {
     let projects = this.state.projects.map((project) => {
       return (
-        <tr>
+        <tr key={project.name}>
           <td>{project.name}</td>
           <td>{project.description}</td>
         </tr>
