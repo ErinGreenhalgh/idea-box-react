@@ -1,6 +1,6 @@
 const React = require('react');
 const ReactDOM = require('react-dom');
-const AllProjects = require('./AllProjects');
+import AllProjects from './AllProjects'
 
 class Body extends React.Component {
   render() {
@@ -8,4 +8,4 @@ class Body extends React.Component {
   }
 }
 
-ReactDOM.render(<Layout />, document.getElementById('layout'))
+ReactDOM.render(<Body />, document.getElementById('layout'))

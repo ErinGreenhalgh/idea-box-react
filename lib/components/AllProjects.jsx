@@ -3,7 +3,7 @@ const ReactDOM = require('react-dom');
 const dataFetcher = require('../dataFetcher.js');
 const axios = require('axios');
 
-class AllProjects extends React.Component{
+export default class AllProjects extends React.Component{
   constructor() {
     super();
     this.state = {projects: []}
@@ -46,5 +46,3 @@ class AllProjects extends React.Component{
     )
   }
 };
-
-ReactDOM.render(<AllProjects />, document.getElementById('layout'))
