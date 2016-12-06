@@ -4,7 +4,12 @@ import AllProjects from './AllProjects'
 
 class Body extends React.Component {
   render() {
-    return ( <AllProjects />)
+    return (
+      <div>
+        <NewProject />
+        <AllProjects />
+      </div>
+    )
   }
 }
 
