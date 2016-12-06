@@ -1,6 +1,7 @@
-const React = require('react');
-const ReactDOM = require('react-dom');
-import AllProjects from './AllProjects'
+import React from 'react';
+import ReactDOM from 'react-dom'
+import AllProjects from './AllProjects';
+import NewProject from './NewProject';
 
 class Body extends React.Component {
   render() {
