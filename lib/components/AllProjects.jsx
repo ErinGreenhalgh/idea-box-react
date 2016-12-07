@@ -1,7 +1,5 @@
-const React = require('react');
-const ReactDOM = require('react-dom');
-const dataFetcher = require('../dataFetcher.js');
-const axios = require('axios');
+import React from 'react';
+import { allProjects } from "../dataFetcher"
 
 export default class AllProjects extends React.Component{
   constructor() {
@@ -10,15 +8,7 @@ export default class AllProjects extends React.Component{
   }
 
   componentDidMount() {
-    axios.get("https://project-manager-18532.firebaseio.com/projects.json?")
-         .then( (response) => {
-           console.log("response:", Object.keys(response.data))
-           this.setState({ projects: response.data});
-         })
-         .catch( (error) => {
-           console.log(error);
-           return error;
-         });
+    this.setState({ projects: allProjects() }) ;
   }
 
   render() {
