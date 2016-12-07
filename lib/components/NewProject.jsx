@@ -23,9 +23,7 @@ export default class NewProject extends React.Component {
   }
 
   handleSubmit(event) {
-    //need to send this info to firebase
-    console.log("name submitted:", this.state.name)
-    console.log("description submitted:", this.state.description)
+    addProject(this.state.name, this.state.description)
     event.preventDefault();
   }
 
