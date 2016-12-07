@@ -3,7 +3,6 @@ import React from 'react';
 export default class NewProject extends React.Component {
   constructor() {
     super()
-    // this.state = {formShowing: false, value: {name: "", description: ""}}
     this.state = {formShowing: false, name: '', decription: ''}
     this.showForm = this.showForm.bind(this);
     this.handleNameChange = this.handleNameChange.bind(this)
