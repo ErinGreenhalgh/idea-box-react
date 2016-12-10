@@ -1,4 +1,5 @@
 import React from 'react';
+import firebase from 'firebase';
 
 export default class NewProject extends React.Component {
   constructor() {
@@ -14,22 +15,24 @@ export default class NewProject extends React.Component {
   }
 
   handleNameChange(event) {
-    console.log("event.target:", event.target)
     this.setState({ name: event.target.value })
   }
-
+  //refactor these into one method
   handleDescChange(event) {
     this.setState({ description: event.target.value })
   }
 
   handleSubmit(event) {
-    addProject(this.state.name, this.state.description)
+    let ref = firebase.database().ref('projects/');
+    let newProjectRef = ref.push();
+    newProjectRef.set({
+      name: this.state.name,
+      description: this.state.description
+    })
     event.preventDefault();
   }
 
   render() {
-    console.log("State.name:", this.state.name)
-    console.log("State.desc:", this.state.description)
     let formShowing = this.state.formShowing;
     let htmlShown = null;
     if (!formShowing) {
