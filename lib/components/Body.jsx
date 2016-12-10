@@ -12,10 +12,7 @@ class Body extends React.Component {
     let app = firebase.initializeApp({ databaseURL: "https://project-manager-18532.firebaseio.com"});
     let db = firebase.database();
     this.ref = db.ref("projects")
-    let projects = this.ref.on("value", (dataSnapshot) => {
-      this.setState({projects: dataSnapshot.val()})
-    })
-    this.state = {projects: projects,
+    this.state = {projects: {},
                   formShowing: false,
                   name: "",
                   description: ""}
@@ -25,11 +22,11 @@ class Body extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  // componentDidMount() {
-  //   this.ref.on("value", (dataSnapshot) => {
-  //     this.setState({projects: dataSnapshot.val()})
-  //   })
-  // }
+  componentDidMount() {
+    this.ref.on("value", (dataSnapshot) => {
+      this.setState({projects: dataSnapshot.val()})
+    })
+  }
 
   showForm () {
     this.setState({ formShowing: true })
