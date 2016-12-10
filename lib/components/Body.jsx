@@ -15,8 +15,14 @@ class Body extends React.Component {
     let projects = this.ref.on("value", (dataSnapshot) => {
       this.setState({projects: dataSnapshot.val()})
     })
-    this.state = {projects: projects, formShowing: false, name: "", description: ""}
-
+    this.state = {projects: projects,
+                  formShowing: false,
+                  name: "",
+                  description: ""}
+    this.showForm = this.showForm.bind(this);
+    this.handleNameChange = this.handleNameChange.bind(this)
+    this.handleDescChange = this.handleDescChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   // componentDidMount() {
@@ -25,10 +31,40 @@ class Body extends React.Component {
   //   })
   // }
 
+  showForm () {
+    this.setState({ formShowing: true })
+  }
+
+  handleNameChange(event) {
+    this.setState({ name: event.target.value })
+  }
+
+  handleDescChange(event) {
+    this.setState({ description: event.target.value })
+  }
+
+  handleSubmit(event) {
+    let ref = firebase.database().ref('projects/');
+    let newProjectRef = ref.push();
+    newProjectRef.set({
+      name: this.state.name,
+      description: this.state.description
+    })
+    event.preventDefault();
+    this.setState({name: ""})
+    this.setState({description: ""})
+  }
+
   render() {
     return (
       <div>
-        <NewProject />
+        <NewProject formShowing={this.state.formShowing}
+                    showForm={this.showForm.bind(this)}
+                    handleNameChange={this.handleNameChange.bind(this)}
+                    handleDescChange={this.handleDescChange.bind(this)}
+                    handleSubmit={this.handleSubmit.bind(this)}
+                    name={this.state.name}
+                    description={this.state.description}/>
         <AllProjects projects={this.state.projects}/>
       </div>
     )
