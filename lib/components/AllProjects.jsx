@@ -1,32 +1,9 @@
 import React from 'react';
-import 'firebase/app'
-import 'firebase/database'
-import firebase from 'firebase';
-import ProjectDetail from './ProjectDetail'
 
 export default class AllProjects extends React.Component{
-  constructor() {
-    super();
-    this.state = { projects: [] }
-    let app = firebase.initializeApp({ databaseURL: "https://project-manager-18532.firebaseio.com"});
-    let db = firebase.database();
-    this.ref = db.ref("projects")
-  }
-
-  showProject() {
-    //project
-    console.log("showing project")
-    // this.setState({projectShowing: true})
-  }
-
-  componentDidMount() {
-    this.ref.on("value", (dataSnapshot) => {
-      this.setState({projects: dataSnapshot.val()})
-    })
-  }
 
   render() {
-    let projectObject = this.state.projects
+    let projectObject = this.props.projects
     let projects = [];
     for (var key in projectObject) {
       if(projectObject.hasOwnProperty(key)) {
