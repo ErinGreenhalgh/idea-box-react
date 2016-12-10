@@ -2,6 +2,7 @@ import React from 'react';
 import 'firebase/app'
 import 'firebase/database'
 import firebase from 'firebase';
+// import { mapObject } from '../helpers';
 
 export default class AllProjects extends React.Component{
   constructor() {
@@ -17,16 +18,23 @@ export default class AllProjects extends React.Component{
       this.setState({projects: dataSnapshot.val()})
     })
   }
+  //seems not to be showing a realtime snapshot of data?
+  // or check if componentDidMount is the right place for this
 
   render() {
-    let projects = this.state.projects.map((project) => {
-      return (
-        <tr key={project.name}>
-          <td>{project.name}</td>
-          <td>{project.description}</td>
+    let projectObject = this.state.projects
+    let projects = [];
+    for (var key in projectObject) {
+      if(projectObject.hasOwnProperty(key)) {
+        let html =
+        <tr key={key}>
+          <td>{projectObject[key].name}</td>
+          <td>{projectObject[key].description}</td>
         </tr>
-      )
-    })
+        projects.push(html)
+      }
+    }
+    console.log("result:", projects)
 
     return (
       <div className="all-projects">
