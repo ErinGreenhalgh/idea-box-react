@@ -30,6 +30,8 @@ export default class NewProject extends React.Component {
       description: this.state.description
     })
     event.preventDefault();
+    this.setState({name: ""})
+    this.setState({description: ""})
   }
 
   render() {
