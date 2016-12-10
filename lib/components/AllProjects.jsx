@@ -14,12 +14,10 @@ export default class AllProjects extends React.Component{
   }
 
   componentDidMount() {
-    this.ref.once("value", (dataSnapshot) => {
+    this.ref.on("value", (dataSnapshot) => {
       this.setState({projects: dataSnapshot.val()})
     })
   }
-  //seems not to be showing a realtime snapshot of data?
-  // or check if componentDidMount is the right place for this
 
   render() {
     let projectObject = this.state.projects
