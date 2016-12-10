@@ -46,5 +46,6 @@ jspm_packages
 # Yarn Integrity file
 .yarn-integrity
 
-* Ignore main.bundle.js
+* Ignore bundles.js
 main.bundle.js
+test.bundle.js
