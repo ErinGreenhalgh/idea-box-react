@@ -17,7 +17,7 @@ export default class NewProject extends React.Component {
   handleNameChange(event) {
     this.setState({ name: event.target.value })
   }
-  //refactor these into one method
+
   handleDescChange(event) {
     this.setState({ description: event.target.value })
   }

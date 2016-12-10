@@ -2,7 +2,6 @@ import React from 'react';
 import 'firebase/app'
 import 'firebase/database'
 import firebase from 'firebase';
-// import { mapObject } from '../helpers';
 
 export default class AllProjects extends React.Component{
   constructor() {
