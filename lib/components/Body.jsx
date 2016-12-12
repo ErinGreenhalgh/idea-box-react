@@ -15,11 +15,13 @@ class Body extends React.Component {
     this.state = {projects: {},
                   formShowing: false,
                   name: "",
-                  description: ""}
+                  description: "",
+                  activeProject: null}
     this.showForm = this.showForm.bind(this);
     this.handleNameChange = this.handleNameChange.bind(this)
     this.handleDescChange = this.handleDescChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.selectActive = this.selectActive.bind(this);
   }
 
   componentDidMount() {
@@ -52,6 +54,30 @@ class Body extends React.Component {
     this.setState({description: ""})
   }
 
+  selectActive(event) {
+    let projectId = event.target.id
+    let ref = firebase.database().ref("projects/")
+    let projects = {}
+    ref.on("value", (snapshot) => {
+      Object.assign(projects, snapshot.val())
+    })
+    for ( var key in projects) {
+      if (projects.hasOwnProperty(key)) {
+        if (key !== projectId) {
+          firebase.database().ref('projects/' + key).update({ active: false })
+        } else if (key === projectId) {
+          firebase.database().ref('projects/' + projectId).update({ active: true })
+        }
+      }
+    }
+    let project = {}
+    let projRef = firebase.database().ref("projects/" + projectId)
+    projRef.on("value", (snapshot) => {
+      Object.assign(project, snapshot.val())
+    })
+    this.setState({activeProject: project})
+  }
+
   render() {
     return (
       <div>
@@ -62,7 +88,9 @@ class Body extends React.Component {
                     handleSubmit={this.handleSubmit.bind(this)}
                     name={this.state.name}
                     description={this.state.description}/>
-        <AllProjects projects={this.state.projects}/>
+        <AllProjects projects={this.state.projects}
+                     selectActive={this.selectActive.bind(this)}
+                     activeProject={this.state.activeProject}/>
       </div>
     )
   }

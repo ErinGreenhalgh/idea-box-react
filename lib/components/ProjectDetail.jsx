@@ -1,9 +1,7 @@
 import React from 'react';
 
 export default class ProjectDetail extends React.Component {
-
   render() {
-    console.log("project:", this.props.project)
     if (this.props.project === null) {
       return(
         <div> No project selected</div>
