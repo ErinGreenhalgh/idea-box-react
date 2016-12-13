@@ -23,6 +23,7 @@ class Body extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.selectActive = this.selectActive.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
+    this.deactivateProject = this.deactivateProject.bind(this);
   }
 
   componentDidMount() {
@@ -83,12 +84,10 @@ class Body extends React.Component {
     let projectId = event.target.id
     let ref = firebase.database().ref("projects/" + projectId)
     ref.remove()
-    this.removeActiveProject()
+    this.deactivateProject()
   }
 
-
-
-  removeActiveProject() {
+  deactivateProject() {
     this.setState({activeProject: null})
   }
 
@@ -105,7 +104,9 @@ class Body extends React.Component {
         <AllProjects projects={this.state.projects}
                      selectActive={this.selectActive.bind(this)}
                      activeProject={this.state.activeProject}
-                     handleDelete={this.handleDelete.bind(this)}/>
+                     handleDelete={this.handleDelete.bind(this)}
+                     deactivateProject={this.deactivateProject.bind(this)}
+                     />
       </div>
     )
   }
