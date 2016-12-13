@@ -48,17 +48,34 @@ nav {
 //   //figure out how to override opacity from overlay
 // }
 
+//Overlay closing X
 #close-detail {
   display: inline-block;
   float: right;
-  padding: 20px;
+  padding: 10px;
   font-size: 2.5em;
   color: white;
 }
 
-button {
+//ProjectDetail content:
+.detail-content {
+  margin: 50px;
+  padding: 15px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  background:#E0E0E0;
+}
+
+.detail-content button {
   background: peru;
+  margin-top: 15px;
+  margin-bottom: 10px;
   border: none;
   border-radius: 8px;
   font: 'Karla', sans-serif;
+}
+
+.detail-content th {
+  background: #C0C0C0;
+  font-weight: bold;
 }

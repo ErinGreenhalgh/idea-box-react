@@ -11,9 +11,9 @@ export default class ProjectDetail extends React.Component {
     } else {
       return(
         <section className="project-detail overlay">
-          <h1 id='close-detail' onClick={this.props.deactivateProject}> X </h1>
           <article className='detail-content'>
-            <table className="detail-component">
+            <h1 id='close-detail' onClick={this.props.deactivateProject}> X </h1>
+            <table id='detail-table'>
               <tbody>
                 <tr>
                   <th>Name</th>
@@ -25,7 +25,7 @@ export default class ProjectDetail extends React.Component {
                 </tr>
               </tbody>
             </table>
-            <button className='detail-component' id={this.props.project.id}
+            <button id={this.props.project.id}
               onClick={this.props.handleDelete}>Delete</button>
           </article>
         </section>
