@@ -12,14 +12,14 @@ export default class NewProject extends React.Component {
       <form onSubmit={this.props.handleSubmit}>
         <input type="text" name="name" placeholder='Project Name' value={this.props.name} onChange={this.props.handleNameChange}/>
         <input type="text" name="description" placeholder='Project Description' value={this.props.description} onChange={this.props.handleDescChange}/>
-        <input type="submit" value="Add Project"/>
+        <input type="submit" value="Add"/>
       </form>
     }
 
     return (
-      <div>
+      <nav>
         { htmlShown }
-      </div>
+      </nav>
     )
   }
 }
