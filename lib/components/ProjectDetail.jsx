@@ -1,16 +1,17 @@
 import React from 'react';
 
 export default class ProjectDetail extends React.Component {
+
   render() {
     console.log("project:", this.props.project)
     if (this.props.project === null) {
       return(
-        <div> No project selected</div>
+        <div> </div>
       )
     } else {
       return(
-        <section className="project-detail">
-          <table>
+        <section className="project-detail overlay">
+          <table className="detail-component">
             <tbody>
               <tr>
                 <th>Name</th>
@@ -22,7 +23,7 @@ export default class ProjectDetail extends React.Component {
               </tr>
             </tbody>
           </table>
-          <button id={this.props.project.id}
+          <button className='detail-component' id={this.props.project.id}
                   onClick={this.props.handleDelete}>Delete</button>
         </section>
       )
