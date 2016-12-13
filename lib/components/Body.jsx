@@ -5,6 +5,7 @@ import NewProject from './NewProject';
 import 'firebase/app'
 import 'firebase/database'
 import firebase from 'firebase';
+import ProjectDetail from './ProjectDetail'
 
 class Body extends React.Component {
   constructor() {
@@ -92,23 +93,36 @@ class Body extends React.Component {
   }
 
   render() {
-    return (
-      <div>
-        <NewProject formShowing={this.state.formShowing}
-                    showForm={this.showForm.bind(this)}
-                    handleNameChange={this.handleNameChange.bind(this)}
-                    handleDescChange={this.handleDescChange.bind(this)}
-                    handleSubmit={this.handleSubmit.bind(this)}
-                    name={this.state.name}
-                    description={this.state.description}/>
-        <AllProjects projects={this.state.projects}
-                     selectActive={this.selectActive.bind(this)}
-                     activeProject={this.state.activeProject}
-                     handleDelete={this.handleDelete.bind(this)}
-                     deactivateProject={this.deactivateProject.bind(this)}
-                     />
-      </div>
-    )
+    let newProject = <NewProject formShowing={this.state.formShowing}
+                showForm={this.showForm.bind(this)}
+                handleNameChange={this.handleNameChange.bind(this)}
+                handleDescChange={this.handleDescChange.bind(this)}
+                handleSubmit={this.handleSubmit.bind(this)}
+                name={this.state.name}
+                description={this.state.description}/>
+    let allProjects = <AllProjects projects={this.state.projects}
+                   selectActive={this.selectActive.bind(this)}
+                   deactivateProject={this.deactivateProject.bind(this)}/>
+    let projectDetail = <ProjectDetail project={this.state.activeProject}
+                                handleDelete={this.handleDelete.bind(this)}
+                                deactivateProject={this.deactivateProject.bind(this)}/>
+
+    if (this.state.activeProject) {
+      return (
+        <div>
+          {newProject}
+          {allProjects}
+          {projectDetail}
+        </div>
+      )
+    } else {
+      return (
+        <div>
+          {newProject}
+          {allProjects}
+        </div>
+      )
+    }
   }
 }
 
