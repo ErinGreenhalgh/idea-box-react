@@ -18,11 +18,11 @@ export default class ProjectDetail extends React.Component {
             <tbody>
               <tr>
                 <th>Name</th>
-                <td onClick={this.makeEditable}>{this.props.project.name}</td>
+                <td id='project-name' onClick={this.makeEditable} onBlur={this.props.updateProject}>{this.props.project.name}</td>
               </tr>
               <tr>
                 <th>Description</th>
-                <td onClick={this.makeEditable}>{this.props.project.description} </td>
+                <td id='project-description' onClick={this.makeEditable} onBlur={this.props.updateProject}>{this.props.project.description} </td>
               </tr>
             </tbody>
           </table>
