@@ -10,7 +10,8 @@ export default class ProjectDetail extends React.Component {
       )
     } else {
       return(
-        <section className="project-detail overlay" onClick={this.props.deactivateProject}>
+        <section className="project-detail overlay">
+          <h1 id='close-detail' onClick={this.props.deactivateProject}> X </h1>
           <article className='detail-content'>
             <table className="detail-component">
               <tbody>
