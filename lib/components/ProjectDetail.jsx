@@ -1,9 +1,15 @@
 import React from 'react';
 
 export default class ProjectDetail extends React.Component {
+  constructor() {
+    super()
+    this.makeEditable = this.makeEditable.bind(this)
+  }
+  makeEditable(event) {
+    event.target.contentEditable = 'true';
+  }
 
   render() {
-    console.log("project:", this.props.project)
     if (this.props.project === null) {
       return(
         <div> </div>
@@ -17,11 +23,11 @@ export default class ProjectDetail extends React.Component {
               <tbody>
                 <tr>
                   <th>Name</th>
-                  <td>{this.props.project.name}</td>
+                  <td onClick={this.makeEditable}>{this.props.project.name}</td>
                 </tr>
                 <tr>
                   <th>Description</th>
-                  <td>{this.props.project.description} </td>
+                  <td onClick={this.makeEditable}>{this.props.project.description} </td>
                 </tr>
               </tbody>
             </table>
