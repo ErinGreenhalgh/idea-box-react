@@ -2,6 +2,7 @@ import React from 'react';
 
 export default class ProjectDetail extends React.Component {
   render() {
+    console.log("project:", this.props.project)
     if (this.props.project === null) {
       return(
         <div> No project selected</div>
@@ -21,6 +22,8 @@ export default class ProjectDetail extends React.Component {
               </tr>
             </tbody>
           </table>
+          <button id={this.props.project.id}
+                  onClick={this.props.handleDelete}>Delete</button>
         </section>
       )
     }

@@ -31,7 +31,8 @@ export default class AllProjects extends React.Component{
           </table>
         </section>
         <section className='project-detail'>
-          <ProjectDetail project={this.props.activeProject}/>
+          <ProjectDetail project={this.props.activeProject}
+                         handleDelete={this.props.handleDelete.bind(this)}/>
         </section>
       </div>
     )

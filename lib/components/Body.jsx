@@ -18,10 +18,11 @@ class Body extends React.Component {
                   description: "",
                   activeProject: null}
     this.showForm = this.showForm.bind(this);
-    this.handleNameChange = this.handleNameChange.bind(this)
-    this.handleDescChange = this.handleDescChange.bind(this)
+    this.handleNameChange = this.handleNameChange.bind(this);
+    this.handleDescChange = this.handleDescChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.selectActive = this.selectActive.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   componentDidMount() {
@@ -70,12 +71,25 @@ class Body extends React.Component {
         }
       }
     }
-    let project = {}
+    let project = {id: projectId}
     let projRef = firebase.database().ref("projects/" + projectId)
     projRef.on("value", (snapshot) => {
       Object.assign(project, snapshot.val())
     })
     this.setState({activeProject: project})
+  }
+
+  handleDelete(event) {
+    let projectId = event.target.id
+    let ref = firebase.database().ref("projects/" + projectId)
+    ref.remove()
+    this.removeActiveProject()
+  }
+
+
+
+  removeActiveProject() {
+    this.setState({activeProject: null})
   }
 
   render() {
@@ -90,7 +104,8 @@ class Body extends React.Component {
                     description={this.state.description}/>
         <AllProjects projects={this.state.projects}
                      selectActive={this.selectActive.bind(this)}
-                     activeProject={this.state.activeProject}/>
+                     activeProject={this.state.activeProject}
+                     handleDelete={this.handleDelete.bind(this)}/>
       </div>
     )
   }
