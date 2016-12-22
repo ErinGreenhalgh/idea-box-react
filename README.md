@@ -1,5 +1,5 @@
 # Project Manager
-This application is a single-page CRUD app built in order to learn React, Redux, and Firebase. Some features and functionality mimick features of [Podio's Project Management](https://podio.com/site/en) app. This project is built in iterations and is currently in progress. 
+This application is a single-page CRUD app built in order to learn React, Redux, and Firebase. Some features and functionality mimick features of [Podio's Project Management](https://podio.com/site/en) app. This project is built in iterations and is currently in progress. See the [Projects tab](https://github.com/ErinGreenhalgh/project-manager/projects/1) of this repo to see the project workplan in detail. 
 
 ## Iteration 1:
 The MVP of this application builds out CRUD functionality for projects with a name and a description using React in ES6. (Completed) 
