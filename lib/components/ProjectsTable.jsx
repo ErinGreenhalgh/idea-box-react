@@ -6,7 +6,7 @@ const ProjectsTable = ({ projects }) => {
   for (var key in projectObject) {
     if(projectObject.hasOwnProperty(key)) {
       let html =
-      <tr key={key} onClick={this.props.selectActive}>
+      <tr key={key} >
         <td id={key}>{projectObject[key].name}</td>
         <td id={key}>{projectObject[key].description}</td>
       </tr>
@@ -14,7 +14,6 @@ const ProjectsTable = ({ projects }) => {
     }
   }
 
-  debugger;
   return (
     <div>
       <section className="all-projects">
