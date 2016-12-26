@@ -1,18 +1,29 @@
 import React from 'react';
+import ProjectsTable from './ProjectsTable';
+import { connect } from 'react-redux';
 
 class ProjectBody extends React.Component {
-  constructor(state, props) {
-    //sets initial state
-    //binds functions that need binding
+  constructor() {
+    super()
   }
 
-  //child functions called by render to be defined here
-
   render() {
-    //should render a child component and not contain any markup
-    return()
+    return(
+      <div> "Hello world!"</div>
+    )
   }
 }
 
-//proptypes and validations (need to do more research on this)
-//reduc connect and mapStateToDispatch and mapStateToProps
+//proptype validations go here (do more research on this)
+
+function mapStateToProps(state, ownProps) {
+  return {
+    projects: state.projects
+  }
+}
+
+// function mapDispatchToProps(dispatch) {
+//   return "hello";
+// }
+
+export default connect(mapStateToProps)(ProjectBody);
