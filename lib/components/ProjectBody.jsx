@@ -9,7 +9,7 @@ class ProjectBody extends React.Component {
 
   render() {
     return(
-      <div> "Hello world!"</div>
+      <ProjectsTable projects={this.props.projects}/>
     )
   }
 }
