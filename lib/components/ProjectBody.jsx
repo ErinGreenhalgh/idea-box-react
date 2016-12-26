@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import ProjectsTable from './ProjectsTable';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -17,6 +17,10 @@ class ProjectBody extends React.Component {
 }
 
 //proptype validations go here (do more research on this)
+ProjectBody.propTypes = {
+  actions: PropTypes.object.isRequired,
+  projects: PropTypes.object.isRequired
+}
 
 function mapStateToProps(state, ownProps) {
   return {
