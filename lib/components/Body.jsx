@@ -143,4 +143,4 @@ class Body extends React.Component {
   }
 }
 
-ReactDOM.render(<Body />, document.getElementById('layout'))
+// ReactDOM.render(<Body />, document.getElementById('layout'))
