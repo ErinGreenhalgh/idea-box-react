@@ -3,6 +3,7 @@ import ProjectsTable from './ProjectsTable';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as projectActions from '../actions/projectActions';
+import NewProjectManager from './NewProjectManager';
 
 class ProjectBody extends React.Component {
   constructor() {
@@ -11,7 +12,10 @@ class ProjectBody extends React.Component {
 
   render() {
     return(
-      <ProjectsTable projects={this.props.projects}/>
+      <div className="project-area">
+        <NewProjectManager />
+        <ProjectsTable projects={this.props.projects}/>
+      </div>
     )
   }
 }
@@ -24,7 +28,8 @@ ProjectBody.propTypes = {
 
 function mapStateToProps(state, ownProps) {
   return {
-    projects: state.projects
+    projects: state.projects,
+    project: state.project
   }
 }
 
