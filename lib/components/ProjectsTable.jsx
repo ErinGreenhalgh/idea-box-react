@@ -13,6 +13,7 @@ const ProjectsTable = ({ projects }) => {
       projectRows.push(html)
     }
   }
+  //refactor the row into its own component 
 
   return (
     <div>
