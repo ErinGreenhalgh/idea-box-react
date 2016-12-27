@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 
 const NewProjectForm = ({ project, onChange, handleSubmit }) => {
   return (
-    <form onSubmit={ handleSubmit }>
+    <form className='new-project' onSubmit={ handleSubmit }>
       <input type="text"
              name="name"
              placeholder='Project Name'
