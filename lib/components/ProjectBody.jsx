@@ -4,19 +4,45 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as projectActions from '../actions/projectActions';
 import NewProjectManager from './NewProjectManager';
+import AddProjectButton from './AddProjectButton';
 
 class ProjectBody extends React.Component {
   constructor() {
     super()
+    this.state = {
+      addProjectFormShowing: false
+    }
+    this.showForm = this.showForm.bind(this);
+  }
+
+  showForm() {
+    this.setState({ addProjectFormShowing: true })
   }
 
   render() {
-    return(
-      <div className="project-area">
-        <NewProjectManager />
-        <ProjectsTable projects={this.props.projects}/>
-      </div>
-    )
+    let button = <AddProjectButton handleClick={this.showForm}/>
+    let table = <ProjectsTable projects={this.props.projects}/>
+    let manager = <NewProjectManager />
+
+    if (this.state.addProjectFormShowing == false) {
+      return(
+        <div className='project-area'>
+          <nav className='project-nav'>
+            {button}
+          </nav>
+          {table}
+        </div>
+      )
+    } else {
+      return(
+        <div className='project-area'>
+          <nav className='project-nav'>
+            {manager}
+          </nav>
+          {table}
+        </div>
+      )
+    }
   }
 }
 
