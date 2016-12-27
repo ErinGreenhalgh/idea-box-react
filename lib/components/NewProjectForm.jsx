@@ -1,8 +1,8 @@
 import React, { PropTypes } from 'react';
 
-const NewProjectForm = ({ project, onChange, handleSubmit }) => {
+const NewProjectForm = ({ project, onChange, createProject, hideForm }) => {
   return (
-    <form className='new-project' onSubmit={ handleSubmit }>
+    <form className='new-project' onSubmit={ createProject }>
       <input type="text"
              name="name"
              placeholder='Project Name'
@@ -14,7 +14,8 @@ const NewProjectForm = ({ project, onChange, handleSubmit }) => {
              value={ project.description }
              onChange={ onChange }/>
       <input type="submit"
-             value="Add" />
+             value="Add"
+             onClick={ hideForm }/>
     </form>
   )
 }

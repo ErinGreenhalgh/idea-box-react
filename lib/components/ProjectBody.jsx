@@ -12,17 +12,21 @@ class ProjectBody extends React.Component {
     this.state = {
       addProjectFormShowing: false
     }
-    this.showForm = this.showForm.bind(this);
+    this.toggleForm = this.toggleForm.bind(this);
   }
 
-  showForm() {
-    this.setState({ addProjectFormShowing: true })
+  toggleForm() {
+    if (this.state.addProjectFormShowing == true) {
+      this.setState({ addProjectFormShowing: false })
+    } else {
+      this.setState({ addProjectFormShowing: true })
+    }
   }
 
   render() {
-    let button = <AddProjectButton handleClick={this.showForm}/>
+    let button = <AddProjectButton handleClick={this.toggleForm}/>
     let table = <ProjectsTable projects={this.props.projects}/>
-    let manager = <NewProjectManager />
+    let manager = <NewProjectManager toggleForm={this.toggleForm}/>
 
     if (this.state.addProjectFormShowing == false) {
       return(

@@ -27,7 +27,8 @@ class NewProjectManager extends React.Component {
     return(
       <NewProjectForm project={this.state.project}
                       onChange={this.updateProjectFields}
-                      handleSubmit={this.createNewProject}/>
+                      createProject={this.createNewProject}
+                      hideForm={this.props.toggleForm}/>
     )
   }
 }
