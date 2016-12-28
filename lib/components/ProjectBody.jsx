@@ -4,19 +4,51 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as projectActions from '../actions/projectActions';
 import ProjectNav from './ProjectNav';
+import { getProject } from '../database/accessProjects';
+import ProjectDetail from './ProjectDetail';
 
 class ProjectBody extends React.Component {
   constructor() {
-    super()
+    super();
+    this.state = {
+      activeProject: null
+    }
+    this.selectActive = this.selectActive.bind(this);
+    this.deactivateProject = this.deactivateProject.bind(this);
+  }
+
+  selectActive(event) {
+    let id = event.target.id
+    getProject(id).then(project => {
+      let activeProject = Object.assign({}, project, {id})
+      this.setState({ activeProject })
+    })
+  }
+
+  deactivateProject(){
+    this.setState({activeProject: null})
   }
 
   render() {
-    return(
-      <div className='project-area'>
-        <ProjectNav />
-        <ProjectsTable projects={this.props.projects}/>
-      </div>
-    )
+    if (this.state.activeProject) {
+      return(
+        <div className='project-area'>
+          <ProjectNav />
+          <ProjectsTable projects={this.props.projects}
+            selectActive={this.selectActive}/>
+          <ProjectDetail project={this.state.activeProject}
+                         deactivateProject={this.deactivateProject}/>
+        </div>
+      )
+    } else {
+      return(
+        <div className='project-area'>
+          <ProjectNav />
+          <ProjectsTable projects={this.props.projects}
+                         selectActive={this.selectActive}/>
+        </div>
+      )
+    }
   }
 }
 
