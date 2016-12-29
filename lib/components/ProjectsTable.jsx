@@ -1,19 +1,19 @@
 import React, { PropTypes } from 'react';
 
-const ProjectsTable = ({ projects }) => {
+const ProjectsTable = ({ projects, selectActive }) => {
   let projectObject = projects
   let projectRows = [];
   for (var key in projectObject) {
     if(projectObject.hasOwnProperty(key)) {
       let html =
-      <tr key={key} >
+      <tr key={key} onClick={selectActive}>
         <td id={key}>{projectObject[key].name}</td>
         <td id={key}>{projectObject[key].description}</td>
       </tr>
       projectRows.push(html)
     }
   }
-  //refactor the row into its own component 
+  //refactor the row into its own component
 
   return (
     <div>
