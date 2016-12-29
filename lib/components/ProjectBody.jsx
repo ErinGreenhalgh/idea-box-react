@@ -19,10 +19,15 @@ class ProjectBody extends React.Component {
 
   selectActive(event) {
     let id = event.target.id
-    getProject(id).then(project => {
-      let activeProject = Object.assign({}, project, {id})
-      this.setState({ activeProject })
-    })
+    this.props.actions.getProject(id);
+    //above is an async function
+    //below has not waited for data to be returned before setting project
+    //need to account for the wait
+    let project = this.props.project
+    // getProject(id).then(project => {
+    //   let activeProject = Object.assign({}, project, {id})
+    //   this.setState({ activeProject })
+    // })
   }
 
   deactivateProject(){
