@@ -1,10 +1,10 @@
 import React from 'react';
 
-const ProjectDetail = ({ project, deactivateProject, handleDelete }) => {
+const ProjectDetail = ({ project, handleClick, handleDelete }) => {
   return(
     <section className="project-detail overlay">
       <article className='detail-content'>
-        <h1 id='close-detail' onClick={deactivateProject}> X </h1>
+        <h1 className='close-detail' id= {project.id} onClick={handleClick}> X </h1>
         <table id='detail-table'>
           <tbody>
             <tr>
