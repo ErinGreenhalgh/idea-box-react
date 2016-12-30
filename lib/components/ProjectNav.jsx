@@ -1,14 +1,18 @@
 import React, { PropTypes } from 'react';
+import ReactDOM from 'react-dom';
 import AddProjectButton from './AddProjectButton'
 import NewProjectManager from './NewProjectManager';
+import ProjectDetail from './ProjectDetail';
 
 class ProjectNav extends React.Component {
   constructor(){
     super();
     this.state = {
-      addProjectFormShowing: false
+      addProjectFormShowing: false,
+      project: { name: "", description: "", due_date: "", phase: ""}
     }
     this.toggleForm = this.toggleForm.bind(this);
+    this.showForm = this.showForm.bind(this);
   }
 
   toggleForm() {
@@ -19,16 +23,18 @@ class ProjectNav extends React.Component {
     }
   }
 
-  render(){
-    if (this.state.addProjectFormShowing == false) {
-      return(
-        <AddProjectButton handleClick={this.toggleForm}/>
-      )
-    } else {
-      return (
-        <NewProjectManager toggleForm={this.toggleForm}/>
-      )
-    }
+  showForm() {
+    ReactDOM.render(<ProjectDetail project={this.state.project} handleClick={this.props.removeDetailView}/>,
+                    document.getElementById('render-here'))
+  }
+
+  render() {
+    return(
+      <div>
+        <section id="render-here"></section>
+        <AddProjectButton handleClick={this.showForm}/>
+      </div>
+    )
   }
 }
 
