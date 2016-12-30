@@ -12,6 +12,7 @@ class ProjectBody extends React.Component {
     super();
     this.selectActive = this.selectActive.bind(this);
     this.deactivateProject = this.deactivateProject.bind(this);
+    this.deleteProject = this.deleteProject.bind(this);
   }
 
   selectActive(event) {
@@ -23,6 +24,11 @@ class ProjectBody extends React.Component {
     this.props.actions.clearProject();
   }
 
+  deleteProject(event){
+    this.props.actions.deleteProject(event.target.id);
+    this.deactivateProject();
+  }
+
   render() {
     if (this.props.activeProject) {
       return(
@@ -31,7 +37,8 @@ class ProjectBody extends React.Component {
           <ProjectsTable projects={this.props.projects}
                          selectActive={this.selectActive}/>
           <ProjectDetail project={this.props.activeProject}
-                         deactivateProject={this.deactivateProject}/>
+                         deactivateProject={this.deactivateProject}
+                         handleDelete={this.deleteProject}/>
         </div>
       )
     } else {
