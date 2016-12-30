@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ProjectDetail = ({ project, deactivateProject }) => {
+const ProjectDetail = ({ project, deactivateProject, handleDelete }) => {
   return(
     <section className="project-detail overlay">
       <article className='detail-content'>
@@ -17,6 +17,8 @@ const ProjectDetail = ({ project, deactivateProject }) => {
             </tr>
           </tbody>
         </table>
+        <button id={project.id}
+                onClick={handleDelete}>Delete</button>
       </article>
     </section>
   )
