@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import ReactDOM from 'react-dom';
 import ProjectsTable from './ProjectsTable';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -13,6 +14,7 @@ class ProjectBody extends React.Component {
     this.selectActive = this.selectActive.bind(this);
     this.deactivateProject = this.deactivateProject.bind(this);
     this.deleteProject = this.deleteProject.bind(this);
+    this.removeDetailView = this.removeDetailView.bind(this);
   }
 
   selectActive(event) {
@@ -29,22 +31,30 @@ class ProjectBody extends React.Component {
     this.deactivateProject();
   }
 
+  removeDetailView(event) {
+    if (event.target.id) {
+      this.deactivateProject();
+    } else {
+      ReactDOM.unmountComponentAtNode(document.getElementById('render-here'));
+    }
+  }
+
   render() {
     if (this.props.activeProject) {
       return(
         <div className='project-area'>
-          <ProjectNav />
+          <ProjectNav removeDetailView = {this.removeDetailView}/>
           <ProjectsTable projects={this.props.projects}
                          selectActive={this.selectActive}/>
           <ProjectDetail project={this.props.activeProject}
-                         deactivateProject={this.deactivateProject}
+                         handleClick={this.removeDetailView}
                          handleDelete={this.deleteProject}/>
         </div>
       )
     } else {
       return(
         <div className='project-area'>
-          <ProjectNav />
+          <ProjectNav removeDetailView={this.removeDetailView}/>
           <ProjectsTable projects={this.props.projects}
                          selectActive={this.selectActive}/>
         </div>
