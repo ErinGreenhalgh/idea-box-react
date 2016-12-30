@@ -9,6 +9,8 @@ const ProjectsTable = ({ projects, selectActive }) => {
       <tr key={key} onClick={selectActive}>
         <td id={key}>{projectObject[key].name}</td>
         <td id={key}>{projectObject[key].description}</td>
+        <td id={key}>{projectObject[key].phase}</td>
+        <td id={key}>{projectObject[key].due_date}</td>
       </tr>
       projectRows.push(html)
     }
@@ -23,6 +25,8 @@ const ProjectsTable = ({ projects, selectActive }) => {
             <tr>
               <th>Project Name</th>
               <th>Description</th>
+              <th>Phase</th>
+              <th>Due Date</th>
             </tr>
             {projectRows}
           </tbody>
