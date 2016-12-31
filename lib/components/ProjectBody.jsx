@@ -15,7 +15,6 @@ class ProjectBody extends React.Component {
     this.deactivateProject = this.deactivateProject.bind(this);
     this.deleteProject = this.deleteProject.bind(this);
     this.removeDetailView = this.removeDetailView.bind(this);
-    this.buttonInfo = this.buttonInfo.bind(this);
   }
 
   selectActive(event) {
@@ -40,10 +39,6 @@ class ProjectBody extends React.Component {
     }
   }
 
-  buttonInfo(){
-    return {type: "button", value: "Delete", onClick: this.deleteProject}
-  }
-
   render() {
     if (this.props.activeProject) {
       return(
@@ -54,7 +49,6 @@ class ProjectBody extends React.Component {
           <ProjectDetail project={this.props.activeProject}
                          handleClick={this.removeDetailView}
                          handleDelete={this.deleteProject}
-                         button={this.buttonInfo}/>
         </div>
       )
     } else {
