@@ -48,6 +48,7 @@ const ProjectDetail = ({ project, handleClick, handleButtonClick, handleDelete, 
                  value={button().value}
                  onClick={handleDelete}></input>
         </form>
+        <button id={project.id} onClick={handleDelete}>Delete</button>
       </article>
     </section>
   )
