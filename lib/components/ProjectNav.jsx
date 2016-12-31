@@ -1,18 +1,23 @@
 import React, { PropTypes } from 'react';
 import ReactDOM from 'react-dom';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import AddProjectButton from './AddProjectButton'
 import NewProjectManager from './NewProjectManager';
 import ProjectDetail from './ProjectDetail';
+import * as projectActions from '../actions/projectActions';
 
 class ProjectNav extends React.Component {
   constructor(){
     super();
     this.state = {
       addProjectFormShowing: false,
-      project: { name: "", description: "", due_date: "", phase: ""}
+      project: {}
     }
     this.toggleForm = this.toggleForm.bind(this);
     this.showForm = this.showForm.bind(this);
+    this.updateProjectFields = this.updateProjectFields.bind(this);
+    this.createNewProject = this.createNewProject.bind(this);
   }
 
   toggleForm() {
@@ -23,10 +28,27 @@ class ProjectNav extends React.Component {
     }
   }
 
+  updateProjectFields(event) {
+    const field = event.target.name;
+    let proj = this.state.project;
+    proj[field] = event.target.value;
+  }
+
+  createNewProject(event){
+    event.preventDefault();
+    this.props.dispatch(projectActions.createProject(this.state.project));
+    // this.props.actions.createProject(this.state.project);
+    //why is bindActionCreators not working here / below?
+  }
+
   showForm() {
-    ReactDOM.render(<ProjectDetail project={this.state.project} handleClick={this.props.removeDetailView}/>,
+    ReactDOM.render(<ProjectDetail project={this.state.project}
+                                   handleClick={this.props.removeDetailView}
+                                   handleChange={this.updateProjectFields}
+                                   handleSubmit={this.createNewProject}/>,
                     document.getElementById('render-here'))
   }
+
 
   render() {
     return(
@@ -38,4 +60,14 @@ class ProjectNav extends React.Component {
   }
 }
 
-export default ProjectNav;
+function mapStateToProps(state, ownProps) {
+  return {projects: state.projects}
+}
+
+// function mapDispatchToProps(dispatch) {
+//   return {
+//     actions: bindActionCreators(projectActions, dispatch)
+//   }
+// }
+
+export default connect(mapStateToProps)(ProjectNav);
