@@ -1,12 +1,12 @@
 import React from 'react';
 
-const ProjectDetail = ({ project, handleClick, handleButtonClick, handleDelete, button }) => {
+const ProjectDetail = ({ project, handleClick, handleSubmit, handleChange, handleDelete}) => {
   let buttonId = "button-" + project.id
   return(
     <section className="project-detail overlay">
       <article className='detail-content'>
-        <h1 className='close-detail' id={project.id} onClick={handleClick}> X </h1>
-        <form>
+        <h1 className='close-detail' id={ project.id } onClick={ handleClick }> X </h1>
+        <form onSubmit={ handleSubmit }>
           <table id='detail-table'>
             <tbody>
               <tr>
@@ -14,7 +14,8 @@ const ProjectDetail = ({ project, handleClick, handleButtonClick, handleDelete, 
                 <td>
                   <input type='text'
                          name="name"
-                         value={project.name}></input>
+                         value={ project.name }
+                         onChange={ handleChange }></input>
                 </td>
               </tr>
               <tr>
@@ -22,7 +23,8 @@ const ProjectDetail = ({ project, handleClick, handleButtonClick, handleDelete, 
                   <td>
                     <input type='text'
                            name="description"
-                           value={project.description}></input>
+                           value={ project.description }
+                           onChange={ handleChange }></input>
                   </td>
               </tr>
               <tr>
@@ -30,7 +32,8 @@ const ProjectDetail = ({ project, handleClick, handleButtonClick, handleDelete, 
                   <td>
                     <input type='text'
                            name="phase"
-                           value={project.phase}></input>
+                           value={ project.phase }
+                           onChange={ handleChange }></input>
                   </td>
               </tr>
               <tr>
@@ -38,15 +41,14 @@ const ProjectDetail = ({ project, handleClick, handleButtonClick, handleDelete, 
                   <td>
                     <input type='text'
                            name="due_date"
-                           value={project.due_date}></input>
+                           value={ project.due_date }
+                           onChange={ handleChange }></input>
                   </td>
               </tr>
             </tbody>
           </table>
-          <input id={buttonId}
-                 type={button().type}
-                 value={button().value}
-                 onClick={handleDelete}></input>
+          <input type="submit"
+                 value="Create / Update"></input>
         </form>
         <button id={project.id} onClick={handleDelete}>Delete</button>
       </article>
