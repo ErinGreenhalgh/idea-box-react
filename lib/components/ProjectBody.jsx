@@ -48,7 +48,7 @@ class ProjectBody extends React.Component {
                          selectActive={this.selectActive}/>
           <ProjectDetail project={this.props.activeProject}
                          handleClick={this.removeDetailView}
-                         handleDelete={this.deleteProject}
+                         handleDelete={this.deleteProject}/>
         </div>
       )
     } else {
