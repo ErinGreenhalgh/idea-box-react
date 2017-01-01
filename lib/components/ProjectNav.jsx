@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import AddProjectButton from './AddProjectButton'
 import NewProjectManager from './NewProjectManager';
-import ProjectDetail from './ProjectDetail';
+import NewProjectForm from './NewProjectForm';
 import * as projectActions from '../actions/projectActions';
 
 class ProjectNav extends React.Component {
@@ -14,18 +14,10 @@ class ProjectNav extends React.Component {
       addProjectFormShowing: false,
       project: {}
     }
-    this.toggleForm = this.toggleForm.bind(this);
     this.showForm = this.showForm.bind(this);
     this.updateProjectFields = this.updateProjectFields.bind(this);
     this.createNewProject = this.createNewProject.bind(this);
-  }
-
-  toggleForm() {
-    if (this.state.addProjectFormShowing == true) {
-      this.setState({ addProjectFormShowing: false })
-    } else {
-      this.setState({ addProjectFormShowing: true })
-    }
+    this.hideForm = this.hideForm.bind(this);
   }
 
   updateProjectFields(event) {
@@ -42,32 +34,34 @@ class ProjectNav extends React.Component {
   }
 
   showForm() {
-    ReactDOM.render(<ProjectDetail project={this.state.project}
-                                   handleClick={this.props.removeDetailView}
-                                   handleChange={this.updateProjectFields}
-                                   handleSubmit={this.createNewProject}/>,
-                    document.getElementById('render-here'))
+    ReactDOM.render(<NewProjectForm project={this.state.project}
+                                    handleChange={this.updateProjectFields}
+                                    handleSubmit={this.createNewProject}
+                                    unmount={this.hideForm}/>,
+                                  document.getElementById('form-detail'))
+  }
+
+  hideForm() {
+    this.setState({ project: {} })
+    ReactDOM.unmountComponentAtNode(document.getElementById('form-detail'));
   }
 
 
   render() {
     return(
       <div>
-        <section id="render-here"></section>
+        <section id="form-detail"></section>
         <AddProjectButton handleClick={this.showForm}/>
       </div>
     )
   }
 }
 
+//this is unnecessary, I just don't know how to access dispatch without passing
+//mapStateToProps to connect...
 function mapStateToProps(state, ownProps) {
-  return {projects: state.projects}
+  return {
+    projects: state.projects
+  }
 }
-
-// function mapDispatchToProps(dispatch) {
-//   return {
-//     actions: bindActionCreators(projectActions, dispatch)
-//   }
-// }
-
 export default connect(mapStateToProps)(ProjectNav);
