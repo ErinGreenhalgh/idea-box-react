@@ -18,6 +18,7 @@ class ProjectNav extends React.Component {
     this.updateProjectFields = this.updateProjectFields.bind(this);
     this.createNewProject = this.createNewProject.bind(this);
     this.hideForm = this.hideForm.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   updateProjectFields(event) {
@@ -36,7 +37,7 @@ class ProjectNav extends React.Component {
   showForm() {
     ReactDOM.render(<NewProjectForm project={this.state.project}
                                     handleChange={this.updateProjectFields}
-                                    handleSubmit={this.createNewProject}
+                                    handleSubmit={this.handleSubmit}
                                     unmount={this.hideForm}/>,
                                   document.getElementById('form-detail'))
   }
@@ -44,6 +45,11 @@ class ProjectNav extends React.Component {
   hideForm() {
     this.setState({ project: {} })
     ReactDOM.unmountComponentAtNode(document.getElementById('form-detail'));
+  }
+
+  handleSubmit(event){
+    this.createNewProject(event)
+    this.hideForm()
   }
 
 
