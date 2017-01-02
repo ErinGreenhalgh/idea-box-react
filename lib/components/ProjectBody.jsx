@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import ReactDOM from 'react-dom';
 import ProjectsTable from './ProjectsTable';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -8,8 +9,11 @@ import { getProject } from '../database/accessProjects';
 import ProjectDetail from './ProjectDetail';
 
 class ProjectBody extends React.Component {
-  constructor() {
-    super();
+  constructor(props, context) {
+    super(props, context);
+    this.state = {
+      activeProject: {}
+    }
     this.selectActive = this.selectActive.bind(this);
     this.deactivateProject = this.deactivateProject.bind(this);
     this.deleteProject = this.deleteProject.bind(this);
@@ -33,18 +37,19 @@ class ProjectBody extends React.Component {
     if (this.props.activeProject) {
       return(
         <div className='project-area'>
-          <ProjectNav />
+          <ProjectNav removeDetailView = {this.removeDetailView}/>
           <ProjectsTable projects={this.props.projects}
                          selectActive={this.selectActive}/>
           <ProjectDetail project={this.props.activeProject}
-                         deactivateProject={this.deactivateProject}
-                         handleDelete={this.deleteProject}/>
+                         handleClick={this.deactivateProject}
+                         handleDelete={this.deleteProject}
+                         handleChange={this.updateProjectState}/>
         </div>
       )
     } else {
       return(
         <div className='project-area'>
-          <ProjectNav />
+          <ProjectNav removeDetailView={this.removeDetailView}/>
           <ProjectsTable projects={this.props.projects}
                          selectActive={this.selectActive}/>
         </div>
@@ -59,7 +64,7 @@ ProjectBody.propTypes = {
 }
 
 function mapStateToProps(state, ownProps) {
-  return {
+   return {
     projects: state.projects,
     activeProject: state.project
   }

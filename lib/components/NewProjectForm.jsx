@@ -1,21 +1,56 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 
-const NewProjectForm = ({ project, onChange, createProject, hideForm }) => {
-  return (
-    <form className='new-project' onSubmit={ createProject, hideForm }>
-      <input type="text"
-             name="name"
-             placeholder='Project Name'
-             value={ project.name }
-             onChange={ onChange }/>
-      <input type="text"
-             name="description"
-             placeholder='Project Description'
-             value={ project.description }
-             onChange={ onChange }/>
-      <input type="submit"
-             value="Add"/>
-    </form>
+const NewProjectForm = ({ project, unmount, handleSubmit, handleChange }) => {
+  return(
+    <section className="project-detail overlay">
+      <article className='detail-content'>
+        <h1 className='close-detail' id={ project.id } onClick={ unmount }> X </h1>
+        <form onSubmit={ handleSubmit }>
+          <table id='detail-table'>
+            <tbody>
+              <tr>
+                <th>Name</th>
+                <td>
+                  <input type='text'
+                         name="name"
+                         value={ project.name }
+                         onChange={ handleChange }></input>
+                </td>
+              </tr>
+              <tr>
+                <th>Description</th>
+                  <td>
+                    <input type='text'
+                           name="description"
+                           value={ project.description }
+                           onChange={ handleChange }></input>
+                  </td>
+              </tr>
+              <tr>
+                <th>Phase</th>
+                  <td>
+                    <input type='text'
+                           name="phase"
+                           value={ project.phase }
+                           onChange={ handleChange }></input>
+                  </td>
+              </tr>
+              <tr>
+                <th>Due Date</th>
+                  <td>
+                    <input type='text'
+                           name="due_date"
+                           value={ project.due_date }
+                           onChange={ handleChange }></input>
+                  </td>
+              </tr>
+            </tbody>
+          </table>
+          <input type="submit"
+                 value="Add Project"></input>
+        </form>
+      </article>
+    </section>
   )
 }
 
