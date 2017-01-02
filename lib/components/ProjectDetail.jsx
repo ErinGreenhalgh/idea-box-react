@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ProjectDetail = ({ project, handleClick, handleSubmit, handleChange, handleDelete}) => {
+const ProjectDetail = ({ project, handleClick, handleSubmit, handleChange, handleDelete, makeEditable, update }) => {
   let buttonId = "button-" + project.id
   return(
     <section className="project-detail overlay">
@@ -8,21 +8,22 @@ const ProjectDetail = ({ project, handleClick, handleSubmit, handleChange, handl
         <h1 className='close-detail' id={ project.id } onClick={ handleClick }> X </h1>
         <table id='detail-table'>
           <tbody>
-            <tr>
+            <tr className="name">
               <th>Name</th>
-              <td>{ project.name }</td>
+              <td onClick={ makeEditable }
+                  onBlur={ update }>{ project.name }</td>
             </tr>
-            <tr>
+            <tr className="description">
               <th>Description</th>
-                <td>{ project.description }</td>
+              <td onClick={ makeEditable } onBlur={ update }>{ project.description }</td>
             </tr>
-            <tr>
+            <tr className="phase">
               <th>Phase</th>
-                <td>{ project.phase }</td>
+              <td onClick={ makeEditable } onBlur={ update }>{ project.phase }</td>
             </tr>
-            <tr>
+            <tr className="due-date">
               <th>Due Date</th>
-                <td> { project.due_date }</td>
+              <td onClick={ makeEditable } onBlur={ update }> { project.due_date }</td>
             </tr>
           </tbody>
         </table>
