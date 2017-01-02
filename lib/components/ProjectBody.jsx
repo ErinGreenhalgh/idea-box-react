@@ -11,12 +11,11 @@ import ProjectDetail from './ProjectDetail';
 class ProjectBody extends React.Component {
   constructor(props, context) {
     super(props, context);
-    this.state = {
-      activeProject: {}
-    }
     this.selectActive = this.selectActive.bind(this);
     this.deactivateProject = this.deactivateProject.bind(this);
     this.deleteProject = this.deleteProject.bind(this);
+    this.editContent = this.editContent.bind(this);
+    this.updateProject = this.updateProject.bind(this);
   }
 
   selectActive(event) {
@@ -33,6 +32,18 @@ class ProjectBody extends React.Component {
     this.deactivateProject();
   }
 
+  editContent(event){
+    event.target.contentEditable = 'true';
+  }
+
+  updateProject(event){
+    let project = this.props.activeProject;
+    let key = event.target.parentElement.className;
+    let value = event.target.innerText;
+    project[key] = value;
+    this.props.actions.updateProject(project.id, project)
+  }
+
   render() {
     if (this.props.activeProject) {
       return(
@@ -43,7 +54,9 @@ class ProjectBody extends React.Component {
           <ProjectDetail project={this.props.activeProject}
                          handleClick={this.deactivateProject}
                          handleDelete={this.deleteProject}
-                         handleChange={this.updateProjectState}/>
+                         handleChange={this.updateProjectState}
+                         makeEditable={this.editContent}
+                         update = {this.updateProject}/>
         </div>
       )
     } else {
