@@ -9,12 +9,14 @@ import { getProject } from '../database/accessProjects';
 import ProjectDetail from './ProjectDetail';
 
 class ProjectBody extends React.Component {
-  constructor() {
-    super();
+  constructor(props, context) {
+    super(props, context);
+    this.state = {
+      activeProject: {}
+    }
     this.selectActive = this.selectActive.bind(this);
     this.deactivateProject = this.deactivateProject.bind(this);
     this.deleteProject = this.deleteProject.bind(this);
-    this.removeDetailView = this.removeDetailView.bind(this);
   }
 
   selectActive(event) {
@@ -31,14 +33,6 @@ class ProjectBody extends React.Component {
     this.deactivateProject();
   }
 
-  removeDetailView(event) {
-    if (event.target.id) {
-      this.deactivateProject();
-    } else {
-      ReactDOM.unmountComponentAtNode(document.getElementById('render-here'));
-    }
-  }
-
   render() {
     if (this.props.activeProject) {
       return(
@@ -47,8 +41,9 @@ class ProjectBody extends React.Component {
           <ProjectsTable projects={this.props.projects}
                          selectActive={this.selectActive}/>
           <ProjectDetail project={this.props.activeProject}
-                         handleClick={this.removeDetailView}
-                         handleDelete={this.deleteProject}/>
+                         handleClick={this.deactivateProject}
+                         handleDelete={this.deleteProject}
+                         handleChange={this.updateProjectState}/>
         </div>
       )
     } else {
@@ -69,7 +64,7 @@ ProjectBody.propTypes = {
 }
 
 function mapStateToProps(state, ownProps) {
-  return {
+   return {
     projects: state.projects,
     activeProject: state.project
   }
