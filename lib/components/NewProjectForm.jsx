@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ProjectDetail = ({ project, unmount, handleSubmit, handleChange }) => {
+const NewProjectForm = ({ project, unmount, handleSubmit, handleChange }) => {
   return(
     <section className="project-detail overlay">
       <article className='detail-content'>
@@ -54,4 +54,4 @@ const ProjectDetail = ({ project, unmount, handleSubmit, handleChange }) => {
   )
 }
 
-export default ProjectDetail;
+export default NewProjectForm;
