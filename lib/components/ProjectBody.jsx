@@ -67,6 +67,8 @@ function mapStateToProps(state, ownProps) {
    return {
     projects: state.projects,
     activeProject: state.project
+    //instead of doing this, use ownProps to find the object that you want
+    //activeProject: ownProps.projectId...
   }
 }
 
