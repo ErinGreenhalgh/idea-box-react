@@ -7,6 +7,7 @@ import * as projectActions from '../actions/projectActions';
 import ProjectNav from './ProjectNav';
 import { getProject } from '../database/accessProjects';
 import ProjectDetail from './ProjectDetail';
+import Navbar from './Navbar';
 
 class ProjectBody extends React.Component {
   constructor(props, context) {
@@ -37,7 +38,7 @@ class ProjectBody extends React.Component {
     if (this.props.activeProject) {
       return(
         <div className='project-area'>
-          <ProjectNav removeDetailView = {this.removeDetailView}/>
+          <Navbar />
           <ProjectsTable projects={this.props.projects}
                          selectActive={this.selectActive}/>
           <ProjectDetail project={this.props.activeProject}
@@ -49,7 +50,7 @@ class ProjectBody extends React.Component {
     } else {
       return(
         <div className='project-area'>
-          <ProjectNav removeDetailView={this.removeDetailView}/>
+          <Navbar />
           <ProjectsTable projects={this.props.projects}
                          selectActive={this.selectActive}/>
         </div>
