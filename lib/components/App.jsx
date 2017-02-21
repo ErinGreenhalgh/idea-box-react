@@ -6,7 +6,7 @@ import { bindActionCreators } from 'redux';
 import * as projectActions from '../actions/projectActions';
 import { getProject } from '../database/accessProjects';
 import ProjectDetail from './ProjectDetail';
-import NewProjectManager from './NewProjectManager';
+import FormDisplayManager from './FormDisplayManager';
 
 class App extends React.Component {
   constructor(props, context) {
@@ -37,7 +37,7 @@ class App extends React.Component {
     if (this.props.activeProject) {
       return(
         <div className='project-area'>
-          <NewProjectManager />
+          <FormDisplayManager />
           <ProjectsTable projects={this.props.projects}
                          selectActive={this.selectActive}/>
           <ProjectDetail project={this.props.activeProject}
@@ -49,7 +49,7 @@ class App extends React.Component {
     } else {
       return(
         <div className='project-area'>
-          <NewProjectManager />
+          <FormDisplayManager />
           <ProjectsTable projects={this.props.projects}
                          selectActive={this.selectActive}/>
         </div>
