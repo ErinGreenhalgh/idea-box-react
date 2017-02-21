@@ -11,7 +11,6 @@ class NavbarManager extends React.Component {
   }
 
   showForm(){
-    debugger;
     ReactDOM.render(<NewProjectManager />, document.getElementById("form-detail"))
   }
 
@@ -22,4 +21,12 @@ class NavbarManager extends React.Component {
   }
 }
 
-export default NavbarManager;
+function mapStateToProps(state, ownProps){
+  return {};
+}
+
+function mapDispatchToProps(dispatch){
+  return {};
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(NavbarManager);
