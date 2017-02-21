@@ -1,10 +1,11 @@
 import React from 'react';
 import AddProjectButton from './AddProjectButton';
 
-const Navbar = ({props}) => {
+const Navbar = ({ clickAdd }) => {
   return(
     <div>
-      <AddProjectButton />
+      <section id='form-detail'></section>
+      <AddProjectButton handleClick={clickAdd}/>
     </div>
   )
 }
