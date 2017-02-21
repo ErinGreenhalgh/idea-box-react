@@ -14,8 +14,8 @@ class NewProjectManager extends React.Component {
 
   updateProjectFields(event) {
     const field = event.target.name;
-    let project = this.state.project;
-    project[field] = event.target.value;
+    let proj = this.state.project;
+    proj[field] = event.target.value;
   }
 
   createNewProject(event){
@@ -27,7 +27,7 @@ class NewProjectManager extends React.Component {
     return(
       <NewProjectForm project={this.state.project}
                       onChange={this.updateProjectFields}
-                      createProject={this.createNewProject}
+                      handleSubmit={this.createNewProject}
                       hideForm={this.props.toggleForm}/>
     )
   }

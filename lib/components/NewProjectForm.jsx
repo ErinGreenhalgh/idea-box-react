@@ -1,6 +1,6 @@
 import React from 'react';
 
-const NewProjectForm = ({ project, unmount, handleSubmit, handleChange }) => {
+const NewProjectForm = ({ project, unmount, handleSubmit, onChange }) => {
   return(
     <section className="project-detail overlay">
       <article className='detail-content'>
@@ -14,7 +14,7 @@ const NewProjectForm = ({ project, unmount, handleSubmit, handleChange }) => {
                   <input type='text'
                          name="name"
                          value={ project.name }
-                         onChange={ handleChange }></input>
+                         onChange={ onChange }></input>
                 </td>
               </tr>
               <tr>
@@ -23,7 +23,7 @@ const NewProjectForm = ({ project, unmount, handleSubmit, handleChange }) => {
                     <input type='text'
                            name="description"
                            value={ project.description }
-                           onChange={ handleChange }></input>
+                           onChange={ onChange }></input>
                   </td>
               </tr>
               <tr>
@@ -32,7 +32,7 @@ const NewProjectForm = ({ project, unmount, handleSubmit, handleChange }) => {
                     <input type='text'
                            name="phase"
                            value={ project.phase }
-                           onChange={ handleChange }></input>
+                           onChange={ onChange }></input>
                   </td>
               </tr>
               <tr>
@@ -41,7 +41,7 @@ const NewProjectForm = ({ project, unmount, handleSubmit, handleChange }) => {
                     <input type='text'
                            name="due_date"
                            value={ project.due_date }
-                           onChange={ handleChange }></input>
+                           onChange={ onChange }></input>
                   </td>
               </tr>
             </tbody>
