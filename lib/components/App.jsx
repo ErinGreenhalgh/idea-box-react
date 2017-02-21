@@ -4,7 +4,6 @@ import ProjectsTable from './ProjectsTable';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as projectActions from '../actions/projectActions';
-import ProjectNav from './ProjectNav';
 import { getProject } from '../database/accessProjects';
 import ProjectDetail from './ProjectDetail';
 import NewProjectManager from './NewProjectManager';
