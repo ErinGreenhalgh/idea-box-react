@@ -7,7 +7,7 @@ import * as projectActions from '../actions/projectActions';
 import ProjectNav from './ProjectNav';
 import { getProject } from '../database/accessProjects';
 import ProjectDetail from './ProjectDetail';
-import NavbarManager from './NavbarManager';
+import NewProjectManager from './NewProjectManager';
 
 class App extends React.Component {
   constructor(props, context) {
@@ -38,7 +38,7 @@ class App extends React.Component {
     if (this.props.activeProject) {
       return(
         <div className='project-area'>
-          <NavbarManager />
+          <NewProjectManager />
           <ProjectsTable projects={this.props.projects}
                          selectActive={this.selectActive}/>
           <ProjectDetail project={this.props.activeProject}
@@ -50,7 +50,7 @@ class App extends React.Component {
     } else {
       return(
         <div className='project-area'>
-          <NavbarManager />
+          <NewProjectManager />
           <ProjectsTable projects={this.props.projects}
                          selectActive={this.selectActive}/>
         </div>
