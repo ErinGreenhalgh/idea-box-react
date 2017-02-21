@@ -6,7 +6,6 @@ import { bindActionCreators } from 'redux';
 import * as projectActions from '../actions/projectActions';
 import { getProject } from '../database/accessProjects';
 import ProjectDetail from './ProjectDetail';
-import FormDisplayManager from './FormDisplayManager';
 
 class App extends React.Component {
   constructor(props, context) {
