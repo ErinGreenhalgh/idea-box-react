@@ -9,7 +9,7 @@ import { getProject } from '../database/accessProjects';
 import ProjectDetail from './ProjectDetail';
 import NavbarManager from './NavbarManager';
 
-class ProjectBody extends React.Component {
+class App extends React.Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
@@ -59,7 +59,7 @@ class ProjectBody extends React.Component {
   }
 }
 
-ProjectBody.propTypes = {
+App.propTypes = {
   actions: PropTypes.object.isRequired,
   projects: PropTypes.object.isRequired
 }
@@ -77,4 +77,4 @@ function mapDispatchToProps(dispatch) {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProjectBody);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
