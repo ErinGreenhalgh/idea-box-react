@@ -6,6 +6,8 @@ import { bindActionCreators } from 'redux';
 import * as projectActions from '../actions/projectActions';
 import { getProject } from '../database/accessProjects';
 import ProjectDetail from './ProjectDetail';
+import NewProjectManager from './NewProjectManager';
+import Navbar from './Navbar';
 
 class App extends React.Component {
   constructor(props, context) {
@@ -16,6 +18,7 @@ class App extends React.Component {
     this.selectActive = this.selectActive.bind(this);
     this.deactivateProject = this.deactivateProject.bind(this);
     this.deleteProject = this.deleteProject.bind(this);
+    this.showForm = this.showForm.bind(this);
   }
 
   selectActive(event) {
@@ -32,11 +35,21 @@ class App extends React.Component {
     this.deactivateProject();
   }
 
+  showForm() {
+    if (this.state.activeProject.name) {
+      //this above is jankey; another way to check if active project has attributes?
+      ReactDOM.render(<NewProjectManager project={ this.state.activeProject } />, document.getElementById("form-detail"));
+    } else {
+      let project = { name: "", description: "", phase: "", due_date: ""};
+      ReactDOM.render(<NewProjectManager project={ project } />, document.getElementById("form-detail"));
+    }
+  }
+
   render() {
     if (this.props.activeProject) {
       return(
         <div className='project-area'>
-          <FormDisplayManager />
+          <Navbar clickAdd = {this.showForm}/>
           <ProjectsTable projects={this.props.projects}
                          selectActive={this.selectActive}/>
           <ProjectDetail project={this.props.activeProject}
@@ -48,7 +61,7 @@ class App extends React.Component {
     } else {
       return(
         <div className='project-area'>
-          <FormDisplayManager />
+          <Navbar clickAdd = {this.showForm}/>
           <ProjectsTable projects={this.props.projects}
                          selectActive={this.selectActive}/>
         </div>
