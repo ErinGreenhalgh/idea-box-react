@@ -1,15 +1,23 @@
 import React, { PropTypes } from 'react';
+import ReactDOM from 'react-dom';
 import NewProjectForm from './NewProjectForm';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as projectActions from '../actions/projectActions';
+import AddProjectButton from './AddProjectButton';
 
 class NewProjectManager extends React.Component {
   constructor(){
     super();
-    this.state = { project: {} }
+    this.state = {
+      project: {},
+      addProjectFormShowing: false
+    }
     this.updateProjectFields = this.updateProjectFields.bind(this);
     this.createNewProject = this.createNewProject.bind(this);
+    this.showForm = this.showForm.bind(this);
+    this.hideForm = this.hideForm.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   updateProjectFields(event) {
@@ -23,12 +31,30 @@ class NewProjectManager extends React.Component {
     this.props.actions.createProject(this.state.project);
   }
 
+  showForm() {
+    ReactDOM.render(<NewProjectForm project={this.state.project}
+                                    onChange={this.updateProjectFields}
+                                    handleSubmit={this.handleSubmit}
+                                    unmount={this.hideForm}/>,
+                                  document.getElementById('form-detail'))
+  }
+
+  hideForm() {
+    this.setState({ project: {} })
+    ReactDOM.unmountComponentAtNode(document.getElementById('form-detail'));
+  }
+
+  handleSubmit(event){
+    this.createNewProject(event)
+    this.hideForm()
+  }
+
   render() {
     return(
-      <NewProjectForm project={this.state.project}
-                      onChange={this.updateProjectFields}
-                      handleSubmit={this.createNewProject}
-                      hideForm={this.props.toggleForm}/>
+      <div>
+        <section id="form-detail"></section>
+        <AddProjectButton handleClick={this.showForm}/>
+      </div>
     )
   }
 }
