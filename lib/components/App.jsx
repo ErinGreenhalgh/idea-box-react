@@ -13,7 +13,8 @@ class App extends React.Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
-      activeProject: {}
+      activeProject: {},
+      formShowing: false
     }
     this.selectActive = this.selectActive.bind(this);
     this.deactivateProject = this.deactivateProject.bind(this);
@@ -36,36 +37,45 @@ class App extends React.Component {
   }
 
   showForm() {
-    if (this.state.activeProject.name) {
-      //this above is jankey; another way to check if active project has attributes?
-      ReactDOM.render(<NewProjectManager project={ this.state.activeProject } />, document.getElementById("form-detail"));
-    } else {
-      let project = { name: "", description: "", phase: "", due_date: ""};
-      ReactDOM.render(<NewProjectManager project={ project } />, document.getElementById("form-detail"));
-    }
+    this.setState({formShowing: true});
   }
 
   render() {
-    if (this.props.activeProject) {
+    //user has clicked on a project in the table to see the detail view
+    if (this.props.activeProject && !this.state.formShowing) {
       return(
         <div className='project-area'>
           <Navbar clickAdd = {this.showForm}/>
           <ProjectsTable projects={this.props.projects}
                          selectActive={this.selectActive}/>
-          <ProjectDetail project={this.props.activeProject}
-                         handleClick={this.deactivateProject}
-                         handleDelete={this.deleteProject}
-                         handleChange={this.updateProjectState}/>
+         <ProjectDetail project={this.props.activeProject}
+           handleClick={this.deactivateProject}
+           handleDelete={this.deleteProject}
+           handleChange={this.updateProjectState}/>
         </div>
       )
-    } else {
-      return(
+    //user has clicked the Add Project Button in order to see the create form
+    } else if (!this.props.activeProject && this.state.formShowing) {
+      return (
+      <div className='project-area'>
+        <NewProjectManager project={this.state.activeProject}/>
+        <ProjectsTable projects={this.props.projects}
+          selectActive={this.selectActive}/>
+      </div>)
+    //case when page loads: user has not clicked anything
+    } else if (!this.props.activeProject && !this.state.formShowing){
+      return (
         <div className='project-area'>
           <Navbar clickAdd = {this.showForm}/>
           <ProjectsTable projects={this.props.projects}
-                         selectActive={this.selectActive}/>
+            selectActive={this.selectActive}/>
         </div>
       )
+    //the user has clicked to update thier project from the project detail view
+    } else if (this.props.activeProject && this.state.formShowing){
+      console.log("Show the form to update the project")
+    }else {
+      console.log("There is a problem!!!!")
     }
   }
 }
