@@ -73,4 +73,4 @@ function mapDispatchToProps(dispatch){
   }
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(NewProjectManager);
+export default connect(mapStateToProps, mapDispatchToProps)(NewProjectManager);
