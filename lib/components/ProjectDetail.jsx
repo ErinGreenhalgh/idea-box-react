@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ProjectDetail = ({ project, handleClick, handleSubmit, handleChange, handleDelete}) => {
+const ProjectDetail = ({ project, handleClick, handleSubmit, handleChange, handleDelete, showForm}) => {
   let buttonId = "button-" + project.id
   return(
     <section className="project-detail overlay">
@@ -27,6 +27,7 @@ const ProjectDetail = ({ project, handleClick, handleSubmit, handleChange, handl
           </tbody>
         </table>
         <button id={project.id} onClick={handleDelete}>Delete</button>
+        <button id={project.id} onClick={showForm}>Update Project</button>
       </article>
     </section>
   )
