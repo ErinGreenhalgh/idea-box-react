@@ -4,18 +4,12 @@ import NewProjectForm from './NewProjectForm';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as projectActions from '../actions/projectActions';
-import AddProjectButton from './AddProjectButton';
 
 class NewProjectManager extends React.Component {
   constructor(){
     super();
-    this.state = {
-      project: {},
-      addProjectFormShowing: false
-    }
     this.updateProjectFields = this.updateProjectFields.bind(this);
     this.createNewProject = this.createNewProject.bind(this);
-    this.showForm = this.showForm.bind(this);
     this.hideForm = this.hideForm.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -31,14 +25,6 @@ class NewProjectManager extends React.Component {
     this.props.actions.createProject(this.state.project);
   }
 
-  showForm() {
-    ReactDOM.render(<NewProjectForm project={this.state.project}
-                                    onChange={this.updateProjectFields}
-                                    handleSubmit={this.handleSubmit}
-                                    unmount={this.hideForm}/>,
-                                  document.getElementById('form-detail'))
-  }
-
   hideForm() {
     this.setState({ project: {} })
     ReactDOM.unmountComponentAtNode(document.getElementById('form-detail'));
@@ -47,22 +33,25 @@ class NewProjectManager extends React.Component {
   handleSubmit(event){
     this.createNewProject(event)
     this.hideForm()
+    //how should we handle hiding the form after submit?
+    //after submit, component will unmount?
   }
 
   render() {
     return(
-      <div>
-        <section id="form-detail"></section>
-        <AddProjectButton handleClick={this.showForm}/>
-      </div>
+      <NewProjectForm project={this.props.project}
+                      onChange={this.updateProjectFields}
+                      handleSubmit={this.handleSubmit} />
     )
   }
 }
 
 
 function mapStateToProps(state, ownProps) {
-  return {
-    project: state.project
+  if (state.project) {
+    return { project: state.project}
+  } else {
+    return {project: {name: "", description: "", phase: "", due_date: ""}}
   }
 }
 
