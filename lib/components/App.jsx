@@ -51,14 +51,15 @@ class App extends React.Component {
          <ProjectDetail project={this.props.activeProject}
            handleClick={this.deactivateProject}
            handleDelete={this.deleteProject}
-           handleChange={this.updateProjectState}/>
+           handleChange={this.updateProjectState}
+           showForm = {this.showForm}/>
         </div>
       )
     //user has clicked the Add Project Button in order to see the create form
     } else if (!this.props.activeProject && this.state.formShowing) {
       return (
       <div className='project-area'>
-        <NewProjectManager project={this.state.activeProject}/>
+        <NewProjectManager />
         <ProjectsTable projects={this.props.projects}
           selectActive={this.selectActive}/>
       </div>)
@@ -73,7 +74,10 @@ class App extends React.Component {
       )
     //the user has clicked to update thier project from the project detail view
     } else if (this.props.activeProject && this.state.formShowing){
-      console.log("Show the form to update the project")
+      return (
+        <div className='project-area'>
+            <NewProjectManager />
+      </div>)
     }else {
       console.log("There is a problem!!!!")
     }
