@@ -8,6 +8,9 @@ import * as projectActions from '../actions/projectActions';
 class NewProjectManager extends React.Component {
   constructor(){
     super();
+    this.state = {
+      project: {}
+    }
     this.updateProjectFields = this.updateProjectFields.bind(this);
     this.createNewProject = this.createNewProject.bind(this);
     this.hideForm = this.hideForm.bind(this);
@@ -16,8 +19,9 @@ class NewProjectManager extends React.Component {
 
   updateProjectFields(event) {
     const field = event.target.name;
-    let proj = this.state.project;
+    let proj = Object.assign( {}, this.props.project, this.state.project)
     proj[field] = event.target.value;
+    this.setState({ project: proj })
   }
 
   createNewProject(event){
@@ -39,7 +43,7 @@ class NewProjectManager extends React.Component {
 
   render() {
     return(
-      <NewProjectForm project={this.props.project}
+      <NewProjectForm project={this.state.project}
                       onChange={this.updateProjectFields}
                       handleSubmit={this.handleSubmit} />
     )
