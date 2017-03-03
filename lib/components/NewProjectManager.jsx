@@ -36,7 +36,7 @@ class NewProjectManager extends React.Component {
 
   handleSubmit(event){
     this.createNewProject(event)
-    this.hideForm()
+    // this.hideForm()
     //how should we handle hiding the form after submit?
     //after submit, component will unmount?
   }
