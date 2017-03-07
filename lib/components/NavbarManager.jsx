@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import Navbar from './Navbar';
-import NewProjectManager from './NewProjectManager';
+import FormManager from './FormManager';
 
 class NavbarManager extends React.Component {
   constructor(){
@@ -11,7 +11,7 @@ class NavbarManager extends React.Component {
   }
 
   showForm(){
-    ReactDOM.render(<NewProjectManager />, document.getElementById("form-detail"))
+    ReactDOM.render(<FormManager />, document.getElementById("form-detail"))
   }
 
   render(){

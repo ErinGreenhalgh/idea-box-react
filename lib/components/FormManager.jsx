@@ -1,11 +1,11 @@
 import React, { PropTypes } from 'react';
 import ReactDOM from 'react-dom';
-import NewProjectForm from './NewProjectForm';
+import ProjectForm from './ProjectForm';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as projectActions from '../actions/projectActions';
 
-class NewProjectManager extends React.Component {
+class FormManager extends React.Component {
   constructor(props){
     super();
     this.state = {
@@ -41,7 +41,7 @@ class NewProjectManager extends React.Component {
 
   render() {
     return(
-      <NewProjectForm project={this.state.project}
+      <ProjectForm project={this.state.project}
                       onChange={this.updateProjectFields}
                       handleSubmit={this.handleSubmit}
                       unmount={this.props.hideForm} />
@@ -65,4 +65,4 @@ function mapDispatchToProps(dispatch){
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(NewProjectManager);
+export default connect(mapStateToProps, mapDispatchToProps)(FormManager);

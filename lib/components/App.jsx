@@ -6,7 +6,7 @@ import { bindActionCreators } from 'redux';
 import * as projectActions from '../actions/projectActions';
 import { getProject } from '../database/accessProjects';
 import ProjectDetail from './ProjectDetail';
-import NewProjectManager from './NewProjectManager';
+import FormManager from './FormManager';
 import Navbar from './Navbar';
 
 class App extends React.Component {
@@ -64,7 +64,7 @@ class App extends React.Component {
     } else if (!this.props.activeProject && this.state.formShowing) {
       return (
       <div className='project-area'>
-        <NewProjectManager hideForm = {this.hideForm} />
+        <FormManager hideForm = {this.hideForm} />
         <ProjectsTable projects={this.props.projects}
           selectActive={this.selectActive}/>
       </div>)
@@ -81,7 +81,7 @@ class App extends React.Component {
     } else if (this.props.activeProject && this.state.formShowing){
       return (
         <div className='project-area'>
-            <NewProjectManager hideForm = {this.hideForm} />
+            <FormManager hideForm = {this.hideForm} />
       </div>)
     }else {
       console.log("There is a problem!!!!")
