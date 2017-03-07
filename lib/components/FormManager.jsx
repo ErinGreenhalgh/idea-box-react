@@ -41,9 +41,11 @@ class FormManager extends React.Component {
   }
 
   handleSubmit(event){
-    // this.createNewProject(event);
-    this.updateProject(event);
-    debugger;
+    if (this.props.project.id) {
+      this.updateProject(event);
+    } else {
+      this.createNewProject(event);
+    }
     this.props.hideForm();
   }
 
