@@ -6,10 +6,10 @@ import { bindActionCreators } from 'redux';
 import * as projectActions from '../actions/projectActions';
 
 class NewProjectManager extends React.Component {
-  constructor(){
+  constructor(props){
     super();
     this.state = {
-      project: {}
+      project: props.project
     }
     this.updateProjectFields = this.updateProjectFields.bind(this);
     this.createNewProject = this.createNewProject.bind(this);
