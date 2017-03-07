@@ -20,6 +20,7 @@ class App extends React.Component {
     this.deactivateProject = this.deactivateProject.bind(this);
     this.deleteProject = this.deleteProject.bind(this);
     this.showForm = this.showForm.bind(this);
+    this.hideForm = this.hideForm.bind(this);
   }
 
   selectActive(event) {
@@ -38,6 +39,10 @@ class App extends React.Component {
 
   showForm() {
     this.setState({formShowing: true});
+  }
+
+  hideForm() {
+    this.setState({formShowing: false});
   }
 
   render() {
@@ -59,7 +64,7 @@ class App extends React.Component {
     } else if (!this.props.activeProject && this.state.formShowing) {
       return (
       <div className='project-area'>
-        <NewProjectManager />
+        <NewProjectManager hideForm = {this.hideForm} />
         <ProjectsTable projects={this.props.projects}
           selectActive={this.selectActive}/>
       </div>)
@@ -76,7 +81,7 @@ class App extends React.Component {
     } else if (this.props.activeProject && this.state.formShowing){
       return (
         <div className='project-area'>
-            <NewProjectManager />
+            <NewProjectManager hideForm = {this.hideForm} />
       </div>)
     }else {
       console.log("There is a problem!!!!")

@@ -36,16 +36,15 @@ class NewProjectManager extends React.Component {
 
   handleSubmit(event){
     this.createNewProject(event)
-    // this.hideForm()
-    //how should we handle hiding the form after submit?
-    //after submit, component will unmount?
+    this.props.hideForm();
   }
 
   render() {
     return(
       <NewProjectForm project={this.state.project}
                       onChange={this.updateProjectFields}
-                      handleSubmit={this.handleSubmit} />
+                      handleSubmit={this.handleSubmit}
+                      unmount={this.props.hideForm} />
     )
   }
 }
