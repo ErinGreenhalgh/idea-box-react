@@ -47,7 +47,7 @@ const NewProjectForm = ({ project, unmount, handleSubmit, onChange }) => {
             </tbody>
           </table>
           <input type="submit"
-                 value="Add Project"></input>
+                 value="Save"></input>
         </form>
       </article>
     </section>
