@@ -16,6 +16,7 @@ class FormManager extends React.Component {
     this.hideForm = this.hideForm.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.updateProject = this.updateProject.bind(this);
+    this.makeUpdatedProjectActive = this.makeUpdatedProjectActive.bind(this);
   }
 
   updateProjectFields(event) {
@@ -27,7 +28,12 @@ class FormManager extends React.Component {
 
   updateProject(event) {
     event.preventDefault;
-    this.props.actions.updateProject(this.props.project.id, this.state.project)
+    this.props.actions.updateProject(this.props.project.id, this.state.project);
+    this.makeUpdatedProjectActive();
+  }
+
+  makeUpdatedProjectActive() {
+    this.props.actions.getProject(this.props.project.id);
   }
 
   createNewProject(event){
