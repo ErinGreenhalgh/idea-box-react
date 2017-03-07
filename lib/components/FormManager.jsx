@@ -15,6 +15,7 @@ class FormManager extends React.Component {
     this.createNewProject = this.createNewProject.bind(this);
     this.hideForm = this.hideForm.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.updateProject = this.updateProject.bind(this);
   }
 
   updateProjectFields(event) {
@@ -22,6 +23,11 @@ class FormManager extends React.Component {
     let proj = Object.assign( {}, this.props.project, this.state.project)
     proj[field] = event.target.value;
     this.setState({ project: proj })
+  }
+
+  updateProject(event) {
+    event.preventDefault;
+    this.props.actions.updateProject(this.props.project.id, this.state.project)
   }
 
   createNewProject(event){
@@ -35,7 +41,9 @@ class FormManager extends React.Component {
   }
 
   handleSubmit(event){
-    this.createNewProject(event)
+    // this.createNewProject(event);
+    this.updateProject(event);
+    debugger;
     this.props.hideForm();
   }
 
@@ -59,9 +67,8 @@ function mapStateToProps(state, ownProps) {
 }
 
 function mapDispatchToProps(dispatch){
-  return{
+  return {
     actions: bindActionCreators(projectActions, dispatch)
-    //this component doesn't need all the actions, consider refactoring
   }
 }
 
