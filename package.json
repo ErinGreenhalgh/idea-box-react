@@ -40,6 +40,7 @@
     "mocha-loader": "^1.0.0",
     "nock": "^9.0.9",
     "node-sass": "^3.11.2",
+    "pretty-error": "^2.0.3",
     "redux-immutable-state-invariant": "^1.2.4",
     "redux-mock-store": "^1.2.2",
     "sass-loader": "^4.0.2",

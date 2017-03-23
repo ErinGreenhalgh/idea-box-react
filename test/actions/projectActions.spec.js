@@ -1,3 +1,4 @@
+require('pretty-error').start();
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import * as actions from "../../lib/actions/projectActions";
