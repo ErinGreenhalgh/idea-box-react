@@ -33,9 +33,14 @@ describe('async project actions', () => {
 
     const store = mockStore({ projects: {} });
 
-    return store.dispatch(actions.loadProjects())
+    let storeThing = store.dispatch(actions.loadProjects())
+    //here it's making an actual api call,stub is not working
+    return storeThing
       .then(() => {
-        expect(store.getActions()).toEqual(expectedActions);
+        let  testActions = store.getActions();
+        console.log("test actions:", testActions);
+        expect(testActions[0]).toEqual(expectedActions);
+        console.log("promise delivered!")
       })
   })
 })
