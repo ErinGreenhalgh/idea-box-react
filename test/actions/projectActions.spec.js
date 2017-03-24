@@ -26,7 +26,9 @@ describe('async project actions', () => {
       .get('/projects')
       .reply(200, { body: { projects: projects }
     })
-
+    //need to mock out the firebase api call; this ^ is not working
+    //way to mock out the firebase call? create a method that returns a promise
+    // via a fake api?
 
     const expectedActions = [
       { type: types.LOAD_PROJECTS_SUCCESS, body: { projects: projects} }
