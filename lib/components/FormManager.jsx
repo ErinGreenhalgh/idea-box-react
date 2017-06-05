@@ -21,7 +21,7 @@ class FormManager extends React.Component {
 
   updateProjectFields(event) {
     const field = event.target.name;
-    let proj = Object.assign( {}, this.props.project, this.state.project)
+    const proj = Object.assign( {}, this.props.project, this.state.project)
     proj[field] = event.target.value;
     this.setState({ project: proj })
   }
