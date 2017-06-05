@@ -1,7 +1,7 @@
 import React from 'react';
 
 const ProjectDetail = ({ project, handleClick, handleSubmit, handleChange, handleDelete, showForm}) => {
-  let buttonId = "button-" + project.id
+  const buttonId = "button-" + project.id
   return(
     <section className="project-detail overlay">
       <article className='detail-content'>

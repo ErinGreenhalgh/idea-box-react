@@ -1,11 +1,11 @@
 import React, { PropTypes } from 'react';
 
 const ProjectsTable = ({ projects, selectActive }) => {
-  let projectObject = projects
-  let projectRows = [];
-  for (var key in projectObject) {
+  const projectObject = projects
+  const projectRows = [];
+  for (let key in projectObject) {
     if(projectObject.hasOwnProperty(key)) {
-      let html =
+      const html =
       <tr key={key} onClick={selectActive}>
         <td id={key}>{projectObject[key].name}</td>
         <td id={key}>{projectObject[key].description}</td>

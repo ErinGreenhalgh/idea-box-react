@@ -24,7 +24,7 @@ class App extends React.Component {
   }
 
   selectActive(event) {
-    let id = event.target.id
+    const id = event.target.id
     this.props.actions.getProject(id);
   }
 
